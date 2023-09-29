@@ -73,7 +73,7 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
     public void cleanUsersTable() {
         try (Session session = getSessionFactory().openSession()) {
             session.beginTransaction();
-            List<User> users = session.createQuery("FROM User").list();
+            List<User> users = session.createQuery("FROM User").getResultList();
 
             for(User user : users) {
                 session.delete(user);
