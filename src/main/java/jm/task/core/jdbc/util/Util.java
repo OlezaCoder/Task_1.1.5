@@ -21,8 +21,7 @@ public class Util {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "22032001";
     private static SessionFactory sessionFactory;
-    private Session session;
-    private Transaction transaction;
+
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
@@ -55,27 +54,7 @@ public class Util {
         }
         return sessionFactory;
     }
-    public Session getSession() {
-        return session;
-    }
-    public Transaction getTransaction() {
-        return transaction;
-    }
-    public Session openSession() {
-        return getSessionFactory().openSession();
-    }
-    public Session openTransactionSession() {
-        session = openSession();
-        transaction = session.beginTransaction();
-        return session;
-    }
-    public void closeSession() {
-        session.close();
-    }
-    public void closeTransactionSession() {
-        transaction.commit();
-        closeSession();
-    }
+
     protected Connection getConnection() {
         Connection connection = null;
         try {
